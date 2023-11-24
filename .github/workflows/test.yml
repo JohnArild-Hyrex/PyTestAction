@@ -1,4 +1,4 @@
-name: G-Test
+name: Pytest
 
 on:
   push:
