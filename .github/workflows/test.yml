@@ -1,0 +1,23 @@
+name: G-Test
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "*" ]
+
+jobs:
+  test:
+    runs-on: self-hosted
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y \
+          python3-venv
+      - name: Make python virtual environment
+        run: python3 -m venv .
+      - name: Install pip requirenments
+        run: source bin/activate && pip install -r requirements.txt
+      - name: Run Tests
+        run: source bin/activate && python3 run_tests.py
